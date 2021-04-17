@@ -17,20 +17,29 @@ class GameViewController: UIViewController {
     @IBOutlet var winnerLabel: UILabel!
     @IBOutlet var restartButton: UIButton!
     
-    private let gameboard = Gameboard()    
+    let gameboard = Gameboard()
     lazy var referee = Referee(gameboard: self.gameboard)
     
     var stateMachine: GKStateMachine!
     
     var gameMode: GameMode?
     
+    var gameModeStrategy: GameModeStrategy {
+        switch gameMode {
+        case .playerVsAI:
+            return PlayerVsAIStrategy()
+        case .playerVsPlayer:
+            return PlayerVsPlayerStrategy()
+        default:
+            return PlayerVsPlayerStrategy()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+  
         let states = configureStates()
-        
         self.stateMachine = GKStateMachine(states: states)
-        
         
         stateMachine.enter(FirstPlayerInputState.self)
         
@@ -68,5 +77,11 @@ class GameViewController: UIViewController {
                 GameEndedState(gameViewController: self)
             ]
         }
+    }
+    
+    func startNewGame() {
+        self.stateMachine.enter(FirstPlayerInputState.self)
+        self.gameboard.clear()
+        self.gameboardView.clear()
     }
 }

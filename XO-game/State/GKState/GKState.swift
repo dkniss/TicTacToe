@@ -37,7 +37,7 @@ class GameEndedState: GKState {
             self.gameViewController.winnerLabel.text = self.winnerName(from: playerInput.player) + " win"
             let alertVC = UIAlertController(title: "Игра окончена!", message: "Победил \(message) игрок", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ок", style: .default) { _ in
-                self.gameViewController.dismiss(animated: true)
+                self.gameViewController.startNewGame()
             }
             alertVC.addAction(action)
             self.gameViewController.present(alertVC, animated: true)
@@ -133,14 +133,8 @@ class AIPlayerInputState: PlayerInputState {
     override func addMark(at position: GameboardPosition) {
         
         let GameBoardSize = [0,1,2]
-//        guard
-//            let randomRow = GameBoardSize.randomElement(),
-//            let randomColumn = GameBoardSize.randomElement()
-//        else { return }
-        
-//        let randomPosition = GameboardPosition(column: randomColumn, row: randomRow)
-        
-        let randomPosition: GameboardPosition = { 
+
+        let randomPosition: GameboardPosition = {
             var position: GameboardPosition
             repeat {
                 let randomRow = GameBoardSize.randomElement()
@@ -149,11 +143,8 @@ class AIPlayerInputState: PlayerInputState {
                 position = randomPosition
             } while !self.view.canPlaceMarkView(at: position)
             return position
-            
         }()
-        
-        guard self.view.canPlaceMarkView(at: randomPosition) else { return }
-        
+
         recordEvent(.addMark(self.player, randomPosition))
         
         let markView = self.player == .first ? XView() : OView()

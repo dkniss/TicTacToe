@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D445652262B3148009EE837 /* GameModeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D445651262B3148009EE837 /* GameModeStrategy.swift */; };
+		4D445656262B3328009EE837 /* PlayerVsPlayerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D445655262B3328009EE837 /* PlayerVsPlayerStrategy.swift */; };
+		4D445659262B3381009EE837 /* PlayerVsAIStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D445658262B3381009EE837 /* PlayerVsAIStrategy.swift */; };
+		4D44565C262B3396009EE837 /* BlindPlayStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D44565B262B3396009EE837 /* BlindPlayStrategy.swift */; };
 		4DECD249262AFEC700F093E1 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DECD248262AFEC700F093E1 /* MenuViewController.swift */; };
 		DBF461BA2624A24000C162B2 /* GKState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF461B92624A24000C162B2 /* GKState.swift */; };
 		DBF461BD2624B72100C162B2 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF461BC2624B72100C162B2 /* GameState.swift */; };
@@ -28,6 +32,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D445651262B3148009EE837 /* GameModeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeStrategy.swift; sourceTree = "<group>"; };
+		4D445655262B3328009EE837 /* PlayerVsPlayerStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVsPlayerStrategy.swift; sourceTree = "<group>"; };
+		4D445658262B3381009EE837 /* PlayerVsAIStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerVsAIStrategy.swift; sourceTree = "<group>"; };
+		4D44565B262B3396009EE837 /* BlindPlayStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlindPlayStrategy.swift; sourceTree = "<group>"; };
 		4DECD248262AFEC700F093E1 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		DBF461B92624A24000C162B2 /* GKState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKState.swift; sourceTree = "<group>"; };
 		DBF461BC2624B72100C162B2 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
@@ -61,6 +69,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D445650262B2F70009EE837 /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+				4D445651262B3148009EE837 /* GameModeStrategy.swift */,
+				4D445655262B3328009EE837 /* PlayerVsPlayerStrategy.swift */,
+				4D445658262B3381009EE837 /* PlayerVsAIStrategy.swift */,
+				4D44565B262B3396009EE837 /* BlindPlayStrategy.swift */,
+			);
+			path = Strategy;
+			sourceTree = "<group>";
+		};
 		DBF461B72624A22B00C162B2 /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +116,7 @@
 		F874E46F2224621100364CAE /* XO-game */ = {
 			isa = PBXGroup;
 			children = (
+				4D445650262B2F70009EE837 /* Strategy */,
 				DBF461B72624A22B00C162B2 /* State */,
 				F874E4702224621100364CAE /* AppDelegate.swift */,
 				F874E4722224621100364CAE /* GameViewController.swift */,
@@ -175,6 +195,7 @@
 				TargetAttributes = {
 					F874E46C2224621100364CAE = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -217,13 +238,17 @@
 				F874E4732224621100364CAE /* GameViewController.swift in Sources */,
 				4DECD249262AFEC700F093E1 /* MenuViewController.swift in Sources */,
 				DBF461C02624C64E00C162B2 /* AnalyticsLog.swift in Sources */,
+				4D445652262B3148009EE837 /* GameModeStrategy.swift in Sources */,
 				F874E4DD2225C25D00364CAE /* GameboardPosition.swift in Sources */,
 				DBF461BD2624B72100C162B2 /* GameState.swift in Sources */,
+				4D445659262B3381009EE837 /* PlayerVsAIStrategy.swift in Sources */,
 				F874E4DF2225C76000364CAE /* MarkView.swift in Sources */,
 				F874E4F12225DFF700364CAE /* Referee.swift in Sources */,
+				4D445656262B3328009EE837 /* PlayerVsPlayerStrategy.swift in Sources */,
 				F874E4F52225E2CD00364CAE /* Gameboard.swift in Sources */,
 				F874E4712224621100364CAE /* AppDelegate.swift in Sources */,
 				F874E4E22225CABF00364CAE /* OView.swift in Sources */,
+				4D44565C262B3396009EE837 /* BlindPlayStrategy.swift in Sources */,
 				DBF461BA2624A24000C162B2 /* GKState.swift in Sources */,
 				F874E4F32225E0B100364CAE /* GameboardSize.swift in Sources */,
 				F874E4E42225CB0700364CAE /* XView.swift in Sources */,
@@ -383,7 +408,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "plasmon.XO-game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -401,7 +426,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "plasmon.XO-game";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
