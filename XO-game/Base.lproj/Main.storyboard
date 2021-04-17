@@ -34,7 +34,7 @@
                                     <action selector="startGamePlayerVsPlayer:" destination="4xJ-HF-qSg" eventType="touchUpInside" id="hw6-oc-49G"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xt-eQ-whb">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xt-eQ-whb">
                                 <rect key="frame" x="72" y="406" width="230" height="34"/>
                                 <color key="backgroundColor" red="0.22746586799999999" green="0.2273398042" blue="0.2352953851" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Игра против компьютера">

@@ -8,7 +8,13 @@
 
 import UIKit
 
+enum GameMode {
+    case playerVsPlayer, playerVsAI
+}
+
 class MenuViewController: UIViewController {
+    
+    var gameMode: GameMode = .playerVsPlayer
     
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var playerVsPlayerButton: UIButton! {
@@ -26,10 +32,12 @@ class MenuViewController: UIViewController {
     
     
     @IBAction func startGamePlayerVsPlayer(_ sender: Any) {
+        self.gameMode = .playerVsPlayer
         performSegue(withIdentifier: "StartGameSegue", sender: nil)
     }
     
     @IBAction func startGamePlayerVsAI(_ sender: Any) {
+        self.gameMode = .playerVsAI
         performSegue(withIdentifier: "StartGameSegue", sender: nil)
     }
     
@@ -45,6 +53,15 @@ class MenuViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard
+            segue.identifier == "StartGameSegue",
+            let destinationVC = segue.destination as? GameViewController
+        else { return }
+        
+        destinationVC.gameMode = gameMode
     }
 
 

@@ -102,8 +102,13 @@ class PlayerInputState: GKState {
             self.isWinner = winner == self.player
             self.stateMachine?.enter(GameEndedState.self)
         } else {
-            let stateClass = player.next == .first ? FirstPlayerInputState.self : SecondPlayerInputState.self
-            self.stateMachine?.enter(stateClass)
+            if gameViewController.gameMode == .playerVsAI {
+                let stateClass = player.next == .first ? FirstPlayerInputState.self : AIPlayerInputState.self
+                self.stateMachine?.enter(stateClass)
+            } else {
+                let stateClass = player.next == .first ? FirstPlayerInputState.self : SecondPlayerInputState.self
+                self.stateMachine?.enter(stateClass)
+            }
         }
     }
 }
@@ -117,5 +122,50 @@ class SecondPlayerInputState: PlayerInputState {
 class FirstPlayerInputState: PlayerInputState {
     init(gameViewController: GameViewController, gameboard: Gameboard, view: GameboardView, referee: Referee) {
         super.init(player: .first, gameViewController: gameViewController, gameboard: gameboard, view: view, referee: referee)
+    }
+}
+
+class AIPlayerInputState: PlayerInputState {
+    init(gameViewController: GameViewController, gameboard: Gameboard, view: GameboardView, referee: Referee) {
+        super.init(player: .second, gameViewController: gameViewController, gameboard: gameboard, view: view, referee: referee)
+    }
+    
+    override func addMark(at position: GameboardPosition) {
+        
+        let GameBoardSize = [0,1,2]
+//        guard
+//            let randomRow = GameBoardSize.randomElement(),
+//            let randomColumn = GameBoardSize.randomElement()
+//        else { return }
+        
+//        let randomPosition = GameboardPosition(column: randomColumn, row: randomRow)
+        
+        let randomPosition: GameboardPosition = { 
+            var position: GameboardPosition
+            repeat {
+                let randomRow = GameBoardSize.randomElement()
+                let randomColumn = GameBoardSize.randomElement()
+                let randomPosition = GameboardPosition(column: randomColumn!, row: randomRow!)
+                position = randomPosition
+            } while !self.view.canPlaceMarkView(at: position)
+            return position
+            
+        }()
+        
+        guard self.view.canPlaceMarkView(at: randomPosition) else { return }
+        
+        recordEvent(.addMark(self.player, randomPosition))
+        
+        let markView = self.player == .first ? XView() : OView()
+        self.gameboard.setPlayer(self.player, at: randomPosition)
+        self.view.placeMarkView(markView, at: randomPosition)
+
+        if let winner = self.referee.determineWinner() {
+            self.isWinner = winner == self.player
+            self.stateMachine?.enter(GameEndedState.self)
+        } else {
+            let stateClass = player.next == .first ? FirstPlayerInputState.self : AIPlayerInputState.self
+            self.stateMachine?.enter(stateClass)
+        }
     }
 }
