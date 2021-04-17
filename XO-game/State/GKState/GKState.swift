@@ -25,7 +25,22 @@ class GameEndedState: GKState {
         if let playerInput = previousState as? PlayerInputState, playerInput.isWinner {
             recordEvent(.endGame(winner: playerInput.player))
             
+            var message = ""
+            
+            switch playerInput.player {
+            case .first:
+                message = "первый"
+            case .second:
+                message = "второй"
+            }
+            
             self.gameViewController.winnerLabel.text = self.winnerName(from: playerInput.player) + " win"
+            let alertVC = UIAlertController(title: "Игра окончена!", message: "Победил \(message) игрок", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ок", style: .default) { _ in
+                self.gameViewController.dismiss(animated: true)
+            }
+            alertVC.addAction(action)
+            self.gameViewController.present(alertVC, animated: true)
         } else {
             self.gameViewController.winnerLabel.text = "No winner"
         }
