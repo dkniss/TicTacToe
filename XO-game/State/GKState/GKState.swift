@@ -159,8 +159,17 @@ class AIPlayerInputState: PlayerInputState {
         super.init(player: .second, gameViewController: gameViewController, gameboard: gameboard, view: view, referee: referee)
     }
     
-    override func addMark(at position: GameboardPosition) {
-
+    override func didEnter(from previousState: GKState?) {
+        switch self.player {
+        case .first:
+            self.gameViewController.firstPlayerTurnLabel.isHidden = false
+            self.gameViewController.secondPlayerTurnLabel.isHidden = true
+        case .second:
+            self.gameViewController.firstPlayerTurnLabel.isHidden = true
+            self.gameViewController.secondPlayerTurnLabel.isHidden = false
+        }
+        self.gameViewController.winnerLabel.isHidden = true
+        
         let GameBoardSize = [0,1,2]
 
         let randomPosition: GameboardPosition = {
@@ -267,8 +276,13 @@ class AllTurnsDoneState: GKState {
         self.gameViewController.winnerLabel.isHidden = false
         self.gameViewController.winnerLabel.text = "Подводим итоги..."
         
-        PlayerTurnInvoker.shared.commands.forEach {
-            $0.execute()
+        let commands = PlayerTurnInvoker.shared.commands
+        let xCommands = commands.filter({$0.player == .first})
+        let oCommands = commands.filter({$0.player == .second})
+        
+        for turn in 0...4{
+            xCommands[turn].execute()
+            oCommands[turn].execute()
         }
         
         if let winner = self.gameViewController.referee.determineWinner() {
