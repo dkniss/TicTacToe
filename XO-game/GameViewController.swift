@@ -30,6 +30,8 @@ class GameViewController: UIViewController {
             return PlayerVsAIStrategy()
         case .playerVsPlayer:
             return PlayerVsPlayerStrategy()
+        case .blindPlay:
+            return BlindPlayStrategy()
         default:
             return PlayerVsPlayerStrategy()
         }
@@ -38,7 +40,8 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
   
-        let states = configureStates()
+        let states = gameModeStrategy.configureStates(gameViewController: self)
+ 
         self.stateMachine = GKStateMachine(states: states)
         
         stateMachine.enter(FirstPlayerInputState.self)

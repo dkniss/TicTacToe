@@ -131,7 +131,7 @@ class AIPlayerInputState: PlayerInputState {
     }
     
     override func addMark(at position: GameboardPosition) {
-        
+
         let GameBoardSize = [0,1,2]
 
         let randomPosition: GameboardPosition = {
@@ -146,7 +146,7 @@ class AIPlayerInputState: PlayerInputState {
         }()
 
         recordEvent(.addMark(self.player, randomPosition))
-        
+
         let markView = self.player == .first ? XView() : OView()
         self.gameboard.setPlayer(self.player, at: randomPosition)
         self.view.placeMarkView(markView, at: randomPosition)

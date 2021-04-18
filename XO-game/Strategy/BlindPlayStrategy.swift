@@ -9,6 +9,16 @@
 import Foundation
 import GameplayKit
 
-//class BlindPlayStrategy: GameModeStrategy {
-//    
-//}
+class BlindPlayStrategy: GameModeStrategy {
+    func configureStates(gameViewController: GameViewController) -> [GKState] {
+        
+        let states = [
+            FirstPlayerInputState(gameViewController: gameViewController, gameboard: gameViewController.gameboard, view: gameViewController.gameboardView, referee: gameViewController.referee),
+            SecondPlayerInputState(gameViewController: gameViewController, gameboard: gameViewController.gameboard, view: gameViewController.gameboardView, referee: gameViewController.referee),
+            GameEndedState(gameViewController: gameViewController)
+        ]
+        return states
+    }
+    
+    
+}

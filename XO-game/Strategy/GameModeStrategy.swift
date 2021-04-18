@@ -10,7 +10,5 @@ import Foundation
 import GameplayKit
 
 protocol GameModeStrategy {
-    var gameViewController: GameViewController? { get }
-    
-    func configureStates() -> [GKState]?
+    func configureStates(gameViewController: GameViewController) -> [GKState]
 }

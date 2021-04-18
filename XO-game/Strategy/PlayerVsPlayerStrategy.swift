@@ -10,11 +10,9 @@ import Foundation
 import GameplayKit
 
 class PlayerVsPlayerStrategy: GameModeStrategy {
-   
-    var gameViewController: GameViewController?
-    
-    func configureStates() -> [GKState]? {
-        guard let gameViewController = gameViewController else { return nil }
+ 
+    func configureStates(gameViewController: GameViewController) -> [GKState] {
+        
         let states = [
             FirstPlayerInputState(gameViewController: gameViewController, gameboard: gameViewController.gameboard, view: gameViewController.gameboardView, referee: gameViewController.referee),
             SecondPlayerInputState(gameViewController: gameViewController, gameboard: gameViewController.gameboard, view: gameViewController.gameboardView, referee: gameViewController.referee),

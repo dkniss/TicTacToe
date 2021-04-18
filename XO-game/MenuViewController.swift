@@ -9,7 +9,7 @@
 import UIKit
 
 enum GameMode {
-    case playerVsPlayer, playerVsAI
+    case playerVsPlayer, playerVsAI,blindPlay
 }
 
 class MenuViewController: UIViewController {
@@ -23,10 +23,18 @@ class MenuViewController: UIViewController {
             self.playerVsPlayerButton.clipsToBounds = true
         }
     }
+    
     @IBOutlet weak var playerVsAIButton: UIButton! {
         didSet {
             self.playerVsAIButton.layer.cornerRadius = 15
             self.playerVsAIButton.clipsToBounds = true
+        }
+    }
+    
+    @IBOutlet weak var blindPlayButton: UIButton! {
+        didSet {
+            self.blindPlayButton.layer.cornerRadius = 15
+            self.blindPlayButton.clipsToBounds = true
         }
     }
     
@@ -38,6 +46,11 @@ class MenuViewController: UIViewController {
     
     @IBAction func startGamePlayerVsAI(_ sender: Any) {
         self.gameMode = .playerVsAI
+        performSegue(withIdentifier: "StartGameSegue", sender: nil)
+    }
+    
+    @IBAction func startGameBlindPlay(_ sender: Any) {
+        self.gameMode = .blindPlay
         performSegue(withIdentifier: "StartGameSegue", sender: nil)
     }
     
