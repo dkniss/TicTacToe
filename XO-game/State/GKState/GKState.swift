@@ -229,7 +229,7 @@ class BlindFirstPlayerInputState: PlayerInputState {
         self.view.placeMarkView(markView, at: position)
         
         if PlayerTurnInvoker.shared.commands.count >= 5 {
-            let alertVC = UIAlertController(title: "Конец", message: "Ход переходит следующему игроку", preferredStyle: .alert)
+            let alertVC = UIAlertController(title: "Конец хода", message: "Ход переходит следующему игроку", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ок", style: .default) { _ in
                 let stateClass = self.player.next == .first ? BlindFirstPlayerInputState.self : BlindSecondPlayerInputState.self
                 self.gameboard.clear()
@@ -259,7 +259,7 @@ class BlindSecondPlayerInputState: PlayerInputState {
         self.view.placeMarkView(markView, at: position)
         
         if PlayerTurnInvoker.shared.commands.count >= 10 {
-            let alertVC = UIAlertController(title: "Конец", message: "Подводим итоги", preferredStyle: .alert)
+            let alertVC = UIAlertController(title: "Конец хода", message: "Пора подвести итоги", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ок", style: .default) { _ in
                 self.gameboard.clear()
                 self.view.clear()
