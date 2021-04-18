@@ -86,10 +86,6 @@ class GameEndedState: GKState {
         case .second: return "2nd player"
         }
     }
-    
-    private func endGame() {
-        
-    }
 }
 
 class PlayerInputState: GKState {
@@ -267,7 +263,6 @@ class BlindSecondPlayerInputState: PlayerInputState {
             }
             alertVC.addAction(action)
             gameViewController.present(alertVC, animated: true)
-            
         }
     }
 }
@@ -313,5 +308,4 @@ class AllTurnsDoneState: GKState {
             self.gameViewController.present(alertVC, animated: true)
         }
     }
-    
 }
