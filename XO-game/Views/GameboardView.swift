@@ -48,7 +48,6 @@ public class GameboardView: UIView {
     }
     
     public func placeMarkView(_ markView: MarkView, at position: GameboardPosition) {
-//        guard self.canPlaceMarkView(at: position) else { return }
         if !self.canPlaceMarkView(at: position) {
             markViewForPosition[position]?.removeFromSuperview()
         }
