@@ -46,7 +46,7 @@ class AnalyticsLogInvoker {
     static let shared = AnalyticsLogInvoker()
     
     private var command: [LogCommand] = []
-    private var batchCount: Int = 6
+    private var batchCount: Int = 5
     
     private let logger: Logger = Logger() // Receiver
     

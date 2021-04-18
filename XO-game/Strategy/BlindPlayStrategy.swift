@@ -10,15 +10,14 @@ import Foundation
 import GameplayKit
 
 class BlindPlayStrategy: GameModeStrategy {
+    
     func configureStates(gameViewController: GameViewController) -> [GKState] {
-        
         let states = [
-            FirstPlayerInputState(gameViewController: gameViewController, gameboard: gameViewController.gameboard, view: gameViewController.gameboardView, referee: gameViewController.referee),
-            SecondPlayerInputState(gameViewController: gameViewController, gameboard: gameViewController.gameboard, view: gameViewController.gameboardView, referee: gameViewController.referee),
+            BlindFirstPlayerInputState(gameViewController: gameViewController, gameboard: gameViewController.gameboard, view: gameViewController.gameboardView, referee: gameViewController.referee),
+            BlindSecondPlayerInputState(gameViewController: gameViewController, gameboard: gameViewController.gameboard, view: gameViewController.gameboardView, referee: gameViewController.referee),
+            AllTurnsDoneState(gameViewController: gameViewController),
             GameEndedState(gameViewController: gameViewController)
         ]
         return states
     }
-    
-    
 }

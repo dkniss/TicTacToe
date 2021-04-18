@@ -24,6 +24,15 @@ class GameViewController: UIViewController {
     
     var gameMode: GameMode?
     
+    var startState: AnyClass {
+        switch self.gameMode {
+        case .blindPlay:
+            return BlindFirstPlayerInputState.self
+        default:
+            return FirstPlayerInputState.self
+        }
+    }
+    
     var gameModeStrategy: GameModeStrategy {
         switch gameMode {
         case .playerVsAI:
@@ -39,13 +48,13 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+ 
         let states = gameModeStrategy.configureStates(gameViewController: self)
  
         self.stateMachine = GKStateMachine(states: states)
         
-        stateMachine.enter(FirstPlayerInputState.self)
-        
+        startNewGame()
+
         gameboardView.onSelectPosition = { [unowned self] position in
             (self.stateMachine.currentState as? PlayerInputState)?.addMark(at: position)
         }
@@ -53,37 +62,12 @@ class GameViewController: UIViewController {
     
     @IBAction func restartButtonTapped(_ sender: UIButton) {
         recordEvent(.restartGame)
-        
-        self.stateMachine.enter(FirstPlayerInputState.self)
-        self.gameboard.clear()
-        self.gameboardView.clear()
-    }
-    
-    private func configureStates() -> [GKState] {
-        switch self.gameMode {
-        case .playerVsAI:
-            return [
-                FirstPlayerInputState(gameViewController: self, gameboard: self.gameboard, view: self.gameboardView, referee: self.referee),
-                AIPlayerInputState(gameViewController: self, gameboard: self.gameboard, view: self.gameboardView, referee: self.referee),
-                GameEndedState(gameViewController: self)
-            ]
-        case .playerVsPlayer:
-            return [
-                FirstPlayerInputState(gameViewController: self, gameboard: self.gameboard, view: self.gameboardView, referee: self.referee),
-                SecondPlayerInputState(gameViewController: self, gameboard: self.gameboard, view: self.gameboardView, referee: self.referee),
-                GameEndedState(gameViewController: self)
-            ]
-        default:
-            return [
-                FirstPlayerInputState(gameViewController: self, gameboard: self.gameboard, view: self.gameboardView, referee: self.referee),
-                SecondPlayerInputState(gameViewController: self, gameboard: self.gameboard, view: self.gameboardView, referee: self.referee),
-                GameEndedState(gameViewController: self)
-            ]
-        }
+        startNewGame()
     }
     
     func startNewGame() {
-        self.stateMachine.enter(FirstPlayerInputState.self)
+        PlayerTurnInvoker.shared.commands = []
+        self.stateMachine.enter(startState)
         self.gameboard.clear()
         self.gameboardView.clear()
     }
