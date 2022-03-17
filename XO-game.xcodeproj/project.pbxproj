@@ -13,8 +13,15 @@
 		4D44565C262B3396009EE837 /* BlindPlayStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D44565B262B3396009EE837 /* BlindPlayStrategy.swift */; };
 		4D445663262C0B04009EE837 /* PlayerTurnCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D445662262C0B04009EE837 /* PlayerTurnCommand.swift */; };
 		4DECD249262AFEC700F093E1 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DECD248262AFEC700F093E1 /* MenuViewController.swift */; };
-		DBF461BA2624A24000C162B2 /* GKState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF461B92624A24000C162B2 /* GKState.swift */; };
-		DBF461BD2624B72100C162B2 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF461BC2624B72100C162B2 /* GameState.swift */; };
+		7724D57D27E36EA400BA0270 /* GameEndedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724D57C27E36EA400BA0270 /* GameEndedState.swift */; };
+		7724D57F27E36ECE00BA0270 /* PlayerInputState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724D57E27E36ECE00BA0270 /* PlayerInputState.swift */; };
+		7724D58127E36F2300BA0270 /* SecondPlayerInputState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724D58027E36F2300BA0270 /* SecondPlayerInputState.swift */; };
+		7724D58327E36F3D00BA0270 /* FirstPlayerInputState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724D58227E36F3D00BA0270 /* FirstPlayerInputState.swift */; };
+		7724D58627E3722400BA0270 /* AIPlayerInputState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724D58527E3722400BA0270 /* AIPlayerInputState.swift */; };
+		7724D58827E3724C00BA0270 /* BlindFirstPlayerInputState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724D58727E3724C00BA0270 /* BlindFirstPlayerInputState.swift */; };
+		7724D58A27E3727300BA0270 /* BlindSecondPlayerInputState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724D58927E3727200BA0270 /* BlindSecondPlayerInputState.swift */; };
+		7724D58C27E372AB00BA0270 /* AllTurnsDoneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724D58B27E372AB00BA0270 /* AllTurnsDoneState.swift */; };
+		7724D58E27E3772700BA0270 /* PlayerTurnInvoker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7724D58D27E3772700BA0270 /* PlayerTurnInvoker.swift */; };
 		DBF461C02624C64E00C162B2 /* AnalyticsLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF461BF2624C64E00C162B2 /* AnalyticsLog.swift */; };
 		F874E4712224621100364CAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F874E4702224621100364CAE /* AppDelegate.swift */; };
 		F874E4732224621100364CAE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F874E4722224621100364CAE /* GameViewController.swift */; };
@@ -39,8 +46,15 @@
 		4D44565B262B3396009EE837 /* BlindPlayStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlindPlayStrategy.swift; sourceTree = "<group>"; };
 		4D445662262C0B04009EE837 /* PlayerTurnCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTurnCommand.swift; sourceTree = "<group>"; };
 		4DECD248262AFEC700F093E1 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		DBF461B92624A24000C162B2 /* GKState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GKState.swift; sourceTree = "<group>"; };
-		DBF461BC2624B72100C162B2 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		7724D57C27E36EA400BA0270 /* GameEndedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndedState.swift; sourceTree = "<group>"; };
+		7724D57E27E36ECE00BA0270 /* PlayerInputState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInputState.swift; sourceTree = "<group>"; };
+		7724D58027E36F2300BA0270 /* SecondPlayerInputState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondPlayerInputState.swift; sourceTree = "<group>"; };
+		7724D58227E36F3D00BA0270 /* FirstPlayerInputState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPlayerInputState.swift; sourceTree = "<group>"; };
+		7724D58527E3722400BA0270 /* AIPlayerInputState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIPlayerInputState.swift; sourceTree = "<group>"; };
+		7724D58727E3724C00BA0270 /* BlindFirstPlayerInputState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlindFirstPlayerInputState.swift; sourceTree = "<group>"; };
+		7724D58927E3727200BA0270 /* BlindSecondPlayerInputState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlindSecondPlayerInputState.swift; sourceTree = "<group>"; };
+		7724D58B27E372AB00BA0270 /* AllTurnsDoneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTurnsDoneState.swift; sourceTree = "<group>"; };
+		7724D58D27E3772700BA0270 /* PlayerTurnInvoker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTurnInvoker.swift; sourceTree = "<group>"; };
 		DBF461BF2624C64E00C162B2 /* AnalyticsLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsLog.swift; sourceTree = "<group>"; };
 		F874E46D2224621100364CAE /* XO-game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XO-game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F874E4702224621100364CAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,25 +100,32 @@
 			isa = PBXGroup;
 			children = (
 				4D445662262C0B04009EE837 /* PlayerTurnCommand.swift */,
+				7724D58D27E3772700BA0270 /* PlayerTurnInvoker.swift */,
 			);
 			path = Command;
+			sourceTree = "<group>";
+		};
+		7724D58427E371E800BA0270 /* PlayerInputState */ = {
+			isa = PBXGroup;
+			children = (
+				7724D57E27E36ECE00BA0270 /* PlayerInputState.swift */,
+				7724D58227E36F3D00BA0270 /* FirstPlayerInputState.swift */,
+				7724D58027E36F2300BA0270 /* SecondPlayerInputState.swift */,
+				7724D58527E3722400BA0270 /* AIPlayerInputState.swift */,
+				7724D58727E3724C00BA0270 /* BlindFirstPlayerInputState.swift */,
+				7724D58927E3727200BA0270 /* BlindSecondPlayerInputState.swift */,
+			);
+			path = PlayerInputState;
 			sourceTree = "<group>";
 		};
 		DBF461B72624A22B00C162B2 /* State */ = {
 			isa = PBXGroup;
 			children = (
-				DBF461B82624A23000C162B2 /* GKState */,
-				DBF461BC2624B72100C162B2 /* GameState.swift */,
+				7724D58427E371E800BA0270 /* PlayerInputState */,
+				7724D57C27E36EA400BA0270 /* GameEndedState.swift */,
+				7724D58B27E372AB00BA0270 /* AllTurnsDoneState.swift */,
 			);
 			path = State;
-			sourceTree = "<group>";
-		};
-		DBF461B82624A23000C162B2 /* GKState */ = {
-			isa = PBXGroup;
-			children = (
-				DBF461B92624A24000C162B2 /* GKState.swift */,
-			);
-			path = GKState;
 			sourceTree = "<group>";
 		};
 		F874E4642224621100364CAE = {
@@ -248,12 +269,17 @@
 			files = (
 				F874E4732224621100364CAE /* GameViewController.swift in Sources */,
 				4DECD249262AFEC700F093E1 /* MenuViewController.swift in Sources */,
+				7724D57D27E36EA400BA0270 /* GameEndedState.swift in Sources */,
+				7724D58627E3722400BA0270 /* AIPlayerInputState.swift in Sources */,
 				DBF461C02624C64E00C162B2 /* AnalyticsLog.swift in Sources */,
 				4D445652262B3148009EE837 /* GameModeStrategy.swift in Sources */,
 				F874E4DD2225C25D00364CAE /* GameboardPosition.swift in Sources */,
-				DBF461BD2624B72100C162B2 /* GameState.swift in Sources */,
 				4D445659262B3381009EE837 /* PlayerVsAIStrategy.swift in Sources */,
+				7724D58127E36F2300BA0270 /* SecondPlayerInputState.swift in Sources */,
 				4D445663262C0B04009EE837 /* PlayerTurnCommand.swift in Sources */,
+				7724D57F27E36ECE00BA0270 /* PlayerInputState.swift in Sources */,
+				7724D58C27E372AB00BA0270 /* AllTurnsDoneState.swift in Sources */,
+				7724D58A27E3727300BA0270 /* BlindSecondPlayerInputState.swift in Sources */,
 				F874E4DF2225C76000364CAE /* MarkView.swift in Sources */,
 				F874E4F12225DFF700364CAE /* Referee.swift in Sources */,
 				4D445656262B3328009EE837 /* PlayerVsPlayerStrategy.swift in Sources */,
@@ -261,9 +287,11 @@
 				F874E4712224621100364CAE /* AppDelegate.swift in Sources */,
 				F874E4E22225CABF00364CAE /* OView.swift in Sources */,
 				4D44565C262B3396009EE837 /* BlindPlayStrategy.swift in Sources */,
-				DBF461BA2624A24000C162B2 /* GKState.swift in Sources */,
+				7724D58E27E3772700BA0270 /* PlayerTurnInvoker.swift in Sources */,
 				F874E4F32225E0B100364CAE /* GameboardSize.swift in Sources */,
+				7724D58827E3724C00BA0270 /* BlindFirstPlayerInputState.swift in Sources */,
 				F874E4E42225CB0700364CAE /* XView.swift in Sources */,
+				7724D58327E36F3D00BA0270 /* FirstPlayerInputState.swift in Sources */,
 				F874E4DB2225C1AC00364CAE /* GameboardView.swift in Sources */,
 				F874E4EF2225DE4500364CAE /* Player.swift in Sources */,
 			);

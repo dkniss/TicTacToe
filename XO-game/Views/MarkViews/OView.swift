@@ -9,7 +9,6 @@
 import UIKit
 
 public class OView: MarkView {
-    
     internal override func updateShapeLayer() {
         super.updateShapeLayer()
         let center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)

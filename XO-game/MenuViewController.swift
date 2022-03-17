@@ -13,10 +13,9 @@ enum GameMode {
 }
 
 class MenuViewController: UIViewController {
-    
-    var gameMode: GameMode = .playerVsPlayer
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var logoImageView: UIImageView!
+    
     @IBOutlet weak var playerVsPlayerButton: UIButton! {
         didSet {
             self.playerVsPlayerButton.layer.cornerRadius = 15
@@ -38,7 +37,10 @@ class MenuViewController: UIViewController {
         }
     }
     
+    // MARK: - Properties
+    var gameMode: GameMode = .playerVsPlayer
     
+    // MARK: - IBActions
     @IBAction func startGamePlayerVsPlayer(_ sender: Any) {
         self.gameMode = .playerVsPlayer
         performSegue(withIdentifier: "StartGameSegue", sender: nil)
@@ -54,10 +56,10 @@ class MenuViewController: UIViewController {
         performSegue(withIdentifier: "StartGameSegue", sender: nil)
     }
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,11 +73,7 @@ class MenuViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
             segue.identifier == "StartGameSegue",
-            let destinationVC = segue.destination as? GameViewController
-        else { return }
-        
+            let destinationVC = segue.destination as? GameViewController else { return }
         destinationVC.gameMode = gameMode
     }
-
-
 }

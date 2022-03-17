@@ -10,18 +10,19 @@ import UIKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-
+    // MARK: - IBOutlets
     @IBOutlet var gameboardView: GameboardView!
     @IBOutlet var firstPlayerTurnLabel: UILabel!
     @IBOutlet var secondPlayerTurnLabel: UILabel!
     @IBOutlet var winnerLabel: UILabel!
     @IBOutlet var restartButton: UIButton!
     
+    // MARK: - Properties
     let gameboard = Gameboard()
+    
     lazy var referee = Referee(gameboard: self.gameboard)
     
     var stateMachine: GKStateMachine!
-    
     var gameMode: GameMode?
     
     var startState: AnyClass {
@@ -60,6 +61,7 @@ class GameViewController: UIViewController {
         }
     }
     
+    // MARK: - Methods
     @IBAction func restartButtonTapped(_ sender: UIButton) {
         recordEvent(.restartGame)
         startNewGame()

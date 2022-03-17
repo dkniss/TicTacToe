@@ -9,9 +9,7 @@
 import Foundation
 
 public final class Referee {
-    
     // MARK: - Properties
-    
     public let gameboard: Gameboard
     
     public private(set) lazy var winningCombinations: [[GameboardPosition]] = {
@@ -24,13 +22,11 @@ public final class Referee {
     }()
     
     // MARK: - Init
-    
     public init(gameboard: Gameboard) {
         self.gameboard = gameboard
     }
     
-    // MARK: - Public
-    
+    // MARK: - Public methods
     public func determineWinner() -> Player? {
         for player in Player.allCases {
             if doesPlayerHaveWinningCombination(player) {
@@ -40,8 +36,7 @@ public final class Referee {
         return nil
     }
     
-    // MARK: - Private
-    
+    // MARK: - Private methods
     private func generateWinsByColumn(result: inout [[GameboardPosition]]) {
         var array: [GameboardPosition] = []
         for column in 0 ..< GameboardSize.columns {
@@ -91,4 +86,3 @@ public final class Referee {
         return false
     }
 }
-
