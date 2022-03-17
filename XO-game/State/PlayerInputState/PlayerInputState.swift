@@ -29,6 +29,58 @@ class PlayerInputState: GKState {
     
     // MARK: - Methods
     override func didEnter(from previousState: GKState?) {
+        setupUI()
+    }
+    
+    func addMark(at position: GameboardPosition) {
+        guard self.view.canPlaceMarkView(at: position) else { return }
+        
+        recordEvent(.addMark(self.player, position))
+        recordTurn(player: self.player, position: position, gameboard: self.gameboard, view: self.view)
+        
+        placeMarkView(at: position)
+        
+        checkForWinner()
+    }
+    
+    func recordTurn(player: Player, position: GameboardPosition, gameboard: Gameboard, view: GameboardView) {
+        let command = PlayerTurnCommand(player: player, position: position, gameboard: gameboard,view: view)
+        PlayerTurnInvoker.shared.addCommand(command)
+    }
+    
+    func placeMarkView(at position: GameboardPosition) {
+        let markView = self.player == .first ? XView() : OView()
+        self.gameboard.setPlayer(self.player, at: position)
+        self.view.placeMarkView(markView, at: position)
+    }
+    
+    func checkForWinner() {
+        if let winner = self.referee.determineWinner() {
+            self.isWinner = winner == self.player
+            self.stateMachine?.enter(GameEndedState.self)
+        } else {
+            if PlayerTurnInvoker.shared.commands.count < 9 {
+                switch gameViewController.gameMode {
+                case .playerVsAI:
+                    let stateClass = player.next == .first ? FirstPlayerInputState.self : AIPlayerInputState.self
+                    self.stateMachine?.enter(stateClass)
+                case .playerVsPlayer:
+                    let stateClass = player.next == .first ? FirstPlayerInputState.self : SecondPlayerInputState.self
+                    self.stateMachine?.enter(stateClass)
+                case .blindPlay:
+                    let stateClass = player.next == .first ? BlindFirstPlayerInputState.self : BlindSecondPlayerInputState.self
+                    self.stateMachine?.enter(stateClass)
+                default:
+                    break
+                }
+            } else {
+                self.stateMachine?.enter(GameEndedState.self)
+            }
+        }
+    }
+    
+    // MARK: - Private methods
+    private func setupUI() {
         switch self.player {
         case .first:
             self.gameViewController.firstPlayerTurnLabel.isHidden = false
@@ -38,42 +90,5 @@ class PlayerInputState: GKState {
             self.gameViewController.secondPlayerTurnLabel.isHidden = false
         }
         self.gameViewController.winnerLabel.isHidden = true
-    }
-    
-    func addMark(at position: GameboardPosition) {
-        guard self.view.canPlaceMarkView(at: position) else { return }
-        
-        recordEvent(.addMark(self.player, position))
-        
-        recordTurn(player: self.player, position: position, gameboard: self.gameboard, view: self.view)
-        
-        let markView = self.player == .first ? XView() : OView()
-        self.gameboard.setPlayer(self.player, at: position)
-        self.view.placeMarkView(markView, at: position)
-        
-        if let winner = self.referee.determineWinner() {
-            self.isWinner = winner == self.player
-            self.stateMachine?.enter(GameEndedState.self)
-        } else {
-            if PlayerTurnInvoker.shared.commands.count < 9 {
-                if gameViewController.gameMode == .playerVsAI {
-                    let stateClass = player.next == .first ? FirstPlayerInputState.self : AIPlayerInputState.self
-                    self.stateMachine?.enter(stateClass)
-                } else if gameViewController.gameMode == .playerVsPlayer {
-                    let stateClass = player.next == .first ? FirstPlayerInputState.self : SecondPlayerInputState.self
-                    self.stateMachine?.enter(stateClass)
-                } else {
-                    let stateClass = player.next == .first ? BlindFirstPlayerInputState.self : BlindSecondPlayerInputState.self
-                    self.stateMachine?.enter(stateClass)
-                }
-            } else {
-                self.stateMachine?.enter(GameEndedState.self)
-            }
-        }
-    }
-    
-    func recordTurn(player: Player, position: GameboardPosition, gameboard: Gameboard, view: GameboardView) {
-        let command = PlayerTurnCommand(player: player, position: position, gameboard: gameboard,view: view)
-        PlayerTurnInvoker.shared.addCommand(command)
     }
 }

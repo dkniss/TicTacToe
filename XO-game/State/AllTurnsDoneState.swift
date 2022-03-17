@@ -14,6 +14,7 @@ class AllTurnsDoneState: GKState {
     var player: Player?
     
     unowned let gameViewController: GameViewController
+    private let turnsRange = 0...4
     
     // MARK: - Init
     init(gameViewController: GameViewController) {
@@ -22,20 +23,31 @@ class AllTurnsDoneState: GKState {
     
     // MARK: - Methods
     override func didEnter(from previousState: GKState?) {
+        setupUI()
+        executeCommands()
+        checkForWinner()
+    }
+    
+    // MARK: - Private methods
+    private func setupUI() {
         self.gameViewController.firstPlayerTurnLabel.isHidden = true
         self.gameViewController.secondPlayerTurnLabel.isHidden = true
         self.gameViewController.winnerLabel.isHidden = false
         self.gameViewController.winnerLabel.text = "Подводим итоги..."
-        
+    }
+    
+    private func executeCommands() {
         let commands = PlayerTurnInvoker.shared.commands
         let xCommands = commands.filter({$0.player == .first})
         let oCommands = commands.filter({$0.player == .second})
         
-        for turn in 0...4{
+        for turn in turnsRange {
             xCommands[turn].execute()
             oCommands[turn].execute()
         }
-        
+    }
+    
+    private func checkForWinner() {
         if let winner = self.gameViewController.referee.determineWinner() {
             self.player = winner
             self.isWinner.toggle()

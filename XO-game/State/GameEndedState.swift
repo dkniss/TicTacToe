@@ -21,8 +21,6 @@ class GameEndedState: GKState {
     
     // MARK: - Methods
     override func didEnter(from previousState: GKState?) {
-        self.gameViewController.winnerLabel.isHidden = false
-        
         if let playerInput = previousState as? PlayerInputState, playerInput.isWinner {
             recordEvent(.endGame(winner: playerInput.player))
             var message = ""
@@ -71,8 +69,7 @@ class GameEndedState: GKState {
             alertVC.addAction(action)
             self.gameViewController.present(alertVC, animated: true)
         }
-        self.gameViewController.firstPlayerTurnLabel.isHidden = true
-        self.gameViewController.secondPlayerTurnLabel.isHidden = true
+        
     }
     
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
@@ -85,5 +82,11 @@ class GameEndedState: GKState {
         case .first: return "1st player"
         case .second: return "2nd player"
         }
+    }
+    
+    private func setupUI() {
+        self.gameViewController.winnerLabel.isHidden = false
+        self.gameViewController.firstPlayerTurnLabel.isHidden = true
+        self.gameViewController.secondPlayerTurnLabel.isHidden = true
     }
 }

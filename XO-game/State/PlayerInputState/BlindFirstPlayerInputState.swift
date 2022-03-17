@@ -16,26 +16,21 @@ class BlindFirstPlayerInputState: PlayerInputState {
     
     // MARK: - Methods
     override func addMark(at position: GameboardPosition) {
-        
         recordEvent(.addMark(self.player, position))
-        
         recordTurn(player: self.player, position: position, gameboard: self.gameboard, view: self.view)
         
-        let markView = self.player == .first ? XView() : OView()
-        self.gameboard.setPlayer(self.player, at: position)
-        self.view.placeMarkView(markView, at: position)
+        placeMarkView(at: position)
         
-        if PlayerTurnInvoker.shared.commands.count >= 5 {
-            let alertVC = UIAlertController(title: "Конец хода", message: "Ход переходит следующему игроку", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ок", style: .default) { _ in
-                let stateClass = self.player.next == .first ? BlindFirstPlayerInputState.self : BlindSecondPlayerInputState.self
-                self.gameboard.clear()
-                self.view.clear()
-                self.stateMachine?.enter(stateClass)
-            }
-            alertVC.addAction(action)
-            gameViewController.present(alertVC, animated: true)
-            
+        guard PlayerTurnInvoker.shared.commands.count >= 5 else { return }
+        
+        let alertVC = UIAlertController(title: "Конец хода", message: "Ход переходит следующему игроку", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ок", style: .default) { _ in
+            let stateClass = self.player.next == .first ? BlindFirstPlayerInputState.self : BlindSecondPlayerInputState.self
+            self.gameboard.clear()
+            self.view.clear()
+            self.stateMachine?.enter(stateClass)
         }
+        alertVC.addAction(action)
+        gameViewController.present(alertVC, animated: true)
     }
 }

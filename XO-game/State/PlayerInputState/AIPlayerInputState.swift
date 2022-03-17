@@ -9,6 +9,9 @@
 import GameplayKit
 
 class AIPlayerInputState: PlayerInputState {
+    // MARK: - Properties
+    private let gameBoardSize = [0,1,2]
+    
     // MARK: - Init
     init(gameViewController: GameViewController, gameboard: Gameboard, view: GameboardView, referee: Referee) {
         super.init(player: .second, gameViewController: gameViewController, gameboard: gameboard, view: view, referee: referee)
@@ -16,6 +19,35 @@ class AIPlayerInputState: PlayerInputState {
     
     // MARK: - Methods
     override func didEnter(from previousState: GKState?) {
+        let randomPosition: GameboardPosition = {
+            var position: GameboardPosition
+            repeat {
+                let randomRow = gameBoardSize.randomElement()
+                let randomColumn = gameBoardSize.randomElement()
+                let randomPosition = GameboardPosition(column: randomColumn!, row: randomRow!)
+                position = randomPosition
+            } while !self.view.canPlaceMarkView(at: position) && PlayerTurnInvoker.shared.commands.count < 9
+            return position
+        }()
+        
+        recordEvent(.addMark(self.player, randomPosition))
+        recordTurn(player: self.player, position: randomPosition, gameboard: self.gameboard, view: self.view)
+        
+        placeMarkView(at: randomPosition)
+    }
+    
+    override func checkForWinner() {
+        if let winner = self.referee.determineWinner() {
+            self.isWinner = winner == self.player
+            self.stateMachine?.enter(GameEndedState.self)
+        } else {
+            let stateClass = player.next == .first ? FirstPlayerInputState.self : AIPlayerInputState.self
+            self.stateMachine?.enter(stateClass)
+        }
+    }
+    
+    // MARK: - Private methods
+    private func setupUI() {
         switch self.player {
         case .first:
             self.gameViewController.firstPlayerTurnLabel.isHidden = false
@@ -25,34 +57,5 @@ class AIPlayerInputState: PlayerInputState {
             self.gameViewController.secondPlayerTurnLabel.isHidden = false
         }
         self.gameViewController.winnerLabel.isHidden = true
-        
-        let GameBoardSize = [0,1,2]
-        
-        let randomPosition: GameboardPosition = {
-            var position: GameboardPosition
-            repeat {
-                let randomRow = GameBoardSize.randomElement()
-                let randomColumn = GameBoardSize.randomElement()
-                let randomPosition = GameboardPosition(column: randomColumn!, row: randomRow!)
-                position = randomPosition
-            } while !self.view.canPlaceMarkView(at: position) && PlayerTurnInvoker.shared.commands.count < 9
-            return position
-        }()
-        
-        recordEvent(.addMark(self.player, randomPosition))
-        
-        recordTurn(player: self.player, position: randomPosition, gameboard: self.gameboard, view: self.view)
-        
-        let markView = self.player == .first ? XView() : OView()
-        self.gameboard.setPlayer(self.player, at: randomPosition)
-        self.view.placeMarkView(markView, at: randomPosition)
-        
-        if let winner = self.referee.determineWinner() {
-            self.isWinner = winner == self.player
-            self.stateMachine?.enter(GameEndedState.self)
-        } else {
-            let stateClass = player.next == .first ? FirstPlayerInputState.self : AIPlayerInputState.self
-            self.stateMachine?.enter(stateClass)
-        }
     }
 }
