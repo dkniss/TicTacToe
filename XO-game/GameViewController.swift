@@ -49,13 +49,8 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
- 
-        let states = gameModeStrategy.configureStates(gameViewController: self)
- 
-        self.stateMachine = GKStateMachine(states: states)
-        
+        setupStateMachine()
         startNewGame()
-
         gameboardView.onSelectPosition = { [unowned self] position in
             (self.stateMachine.currentState as? PlayerInputState)?.addMark(at: position)
         }
@@ -72,5 +67,11 @@ class GameViewController: UIViewController {
         self.stateMachine.enter(startState)
         self.gameboard.clear()
         self.gameboardView.clear()
+    }
+    
+    //MARK: - Private methods
+    private func setupStateMachine() {
+        let states = gameModeStrategy.configureStates(gameViewController: self)
+        self.stateMachine = GKStateMachine(states: states)
     }
 }
