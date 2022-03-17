@@ -32,12 +32,10 @@ class GameEndedState: GKState {
             showWinner(player: player)
         } else {
             self.gameViewController.winnerLabel.text = "Ничья"
-            let alertVC = UIAlertController(title: "Игра окончена", message: "Ничья", preferredStyle: .alert)
-            let action =  UIAlertAction(title: "Ок", style: .default) { _ in
+            self.gameViewController.showAlert(title: "Игра окончена", message: "Ничья") { [weak self] in
+                guard let self = self else { return }
                 self.gameViewController.startNewGame()
             }
-            alertVC.addAction(action)
-            self.gameViewController.present(alertVC, animated: true)
         }
     }
     
@@ -60,15 +58,11 @@ class GameEndedState: GKState {
     }
     
     private func showWinner(player: Player) {
-        self.gameViewController.winnerLabel.text = self.winnerName(from: player) + " win"
-        
         let message = player == .first ? "первый" : "второй"
-        
-        let alertVC = UIAlertController(title: "Игра окончена!", message: "Победил \(message) игрок", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ок", style: .default) { _ in
+        self.gameViewController.winnerLabel.text = self.winnerName(from: player) + " win"
+        self.gameViewController.showAlert(title: "Игра окончена!", message: "Победил \(message) игрок") { [weak self] in
+            guard let self = self else { return }
             self.gameViewController.startNewGame()
         }
-        alertVC.addAction(action)
-        self.gameViewController.present(alertVC, animated: true)
     }
 }

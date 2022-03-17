@@ -23,14 +23,12 @@ class BlindFirstPlayerInputState: PlayerInputState {
         
         guard PlayerTurnInvoker.shared.commands.count >= 5 else { return }
         
-        let alertVC = UIAlertController(title: "Конец хода", message: "Ход переходит следующему игроку", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ок", style: .default) { _ in
+        gameViewController.showAlert(title: "Конец хода", message: "Ход переходит следующему игроку") { [weak self] in
+            guard let self = self else { return }
             let stateClass = self.player.next == .first ? BlindFirstPlayerInputState.self : BlindSecondPlayerInputState.self
             self.gameboard.clear()
             self.view.clear()
             self.stateMachine?.enter(stateClass)
         }
-        alertVC.addAction(action)
-        gameViewController.present(alertVC, animated: true)
     }
 }

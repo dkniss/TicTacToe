@@ -54,12 +54,10 @@ class AllTurnsDoneState: GKState {
             self.stateMachine?.enter(GameEndedState.self)
         } else {
             self.gameViewController.winnerLabel.text = "Ничья"
-            let alertVC = UIAlertController(title: "Игра окончена", message: "Ничья", preferredStyle: .alert)
-            let action =  UIAlertAction(title: "Ок", style: .default) { _ in
+            self.gameViewController.showAlert(title: "Игра окончена", message: "Ничья") { [weak self] in
+                guard let self = self else { return }
                 self.gameViewController.startNewGame()
             }
-            alertVC.addAction(action)
-            self.gameViewController.present(alertVC, animated: true)
         }
     }
 }

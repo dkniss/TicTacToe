@@ -23,13 +23,11 @@ class BlindSecondPlayerInputState: PlayerInputState {
         
         guard PlayerTurnInvoker.shared.commands.count >= 10 else { return }
         
-        let alertVC = UIAlertController(title: "Конец хода", message: "Пора подвести итоги", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ок", style: .default) { _ in
+        gameViewController.showAlert(title: "Конец хода", message: "Пора подвести итоги") { [weak self] in
+            guard let self = self else { return }
             self.gameboard.clear()
             self.view.clear()
             self.stateMachine?.enter(AllTurnsDoneState.self)
         }
-        alertVC.addAction(action)
-        gameViewController.present(alertVC, animated: true)
     }
 }
