@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2X3-UO-pdN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2X3-UO-pdN">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,15 +18,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="42l-Yw-k1w">
-                                <rect key="frame" x="67.5" y="8" width="240" height="240"/>
+                                <rect key="frame" x="67.5" y="74" width="240" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="Jdz-nP-H5j"/>
                                     <constraint firstAttribute="height" constant="240" id="sPP-Ap-0YX"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3H-DM-cfC">
-                                <rect key="frame" x="137" y="349" width="100" height="34"/>
+                                <rect key="frame" x="138" y="481" width="99" height="32"/>
                                 <color key="backgroundColor" red="0.22746586799999999" green="0.2273398042" blue="0.2352953851" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                 <state key="normal" title="Игра 1 vs 1">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -35,8 +36,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xt-eQ-whb">
-                                <rect key="frame" x="72" y="403" width="230" height="34"/>
+                                <rect key="frame" x="76" y="533" width="223" height="32"/>
                                 <color key="backgroundColor" red="0.22746586799999999" green="0.2273398042" blue="0.2352953851" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                 <state key="normal" title="Игра против компьютера">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -45,8 +47,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aU-jn-HvH">
-                                <rect key="frame" x="117" y="457" width="140" height="34"/>
+                                <rect key="frame" x="123" y="585" width="129" height="32"/>
                                 <color key="backgroundColor" red="0.22746586799999999" green="0.2273398042" blue="0.2352953851" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                 <state key="normal" title="Игра вслепую">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -58,17 +61,14 @@
                         <viewLayoutGuide key="safeArea" id="SYe-Gl-Z46"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6aU-jn-HvH" firstAttribute="leading" secondItem="SYe-Gl-Z46" secondAttribute="leading" constant="117" id="1AT-lh-Y9j"/>
                             <constraint firstItem="42l-Yw-k1w" firstAttribute="centerX" secondItem="iHB-Z6-bO7" secondAttribute="centerX" id="1pF-zR-OfQ"/>
-                            <constraint firstItem="SYe-Gl-Z46" firstAttribute="trailing" secondItem="4xt-eQ-whb" secondAttribute="trailing" constant="72.947444435528837" id="6s7-YZ-24i"/>
-                            <constraint firstItem="SYe-Gl-Z46" firstAttribute="trailing" secondItem="6aU-jn-HvH" secondAttribute="trailing" constant="118" id="7jh-Cd-FJO"/>
-                            <constraint firstItem="SYe-Gl-Z46" firstAttribute="bottom" secondItem="6aU-jn-HvH" secondAttribute="bottom" constant="176" id="ITP-Zu-C04"/>
+                            <constraint firstItem="6aU-jn-HvH" firstAttribute="centerX" secondItem="iHB-Z6-bO7" secondAttribute="centerX" id="ASE-Kz-n4p"/>
+                            <constraint firstItem="P3H-DM-cfC" firstAttribute="centerX" secondItem="iHB-Z6-bO7" secondAttribute="centerX" id="HMI-hL-HVr"/>
                             <constraint firstItem="4xt-eQ-whb" firstAttribute="top" secondItem="P3H-DM-cfC" secondAttribute="bottom" constant="20" id="KaF-Jx-x3A"/>
+                            <constraint firstItem="SYe-Gl-Z46" firstAttribute="top" secondItem="42l-Yw-k1w" secondAttribute="top" constant="-30" id="Kep-Un-CSY"/>
                             <constraint firstItem="6aU-jn-HvH" firstAttribute="top" secondItem="4xt-eQ-whb" secondAttribute="bottom" constant="20" id="WiZ-uU-5Ni"/>
-                            <constraint firstItem="P3H-DM-cfC" firstAttribute="leading" secondItem="SYe-Gl-Z46" secondAttribute="leading" constant="136.98837251907435" id="bKq-fN-j1t"/>
-                            <constraint firstItem="P3H-DM-cfC" firstAttribute="top" secondItem="42l-Yw-k1w" secondAttribute="bottom" constant="101" id="hQY-1H-uiU"/>
-                            <constraint firstItem="SYe-Gl-Z46" firstAttribute="trailing" secondItem="P3H-DM-cfC" secondAttribute="trailing" constant="138.01162748092571" id="l1f-CN-H51"/>
-                            <constraint firstItem="4xt-eQ-whb" firstAttribute="leading" secondItem="SYe-Gl-Z46" secondAttribute="leading" constant="72.052555564471163" id="rSs-GT-tL4"/>
+                            <constraint firstItem="4xt-eQ-whb" firstAttribute="centerX" secondItem="iHB-Z6-bO7" secondAttribute="centerX" id="d0d-oB-AgB"/>
+                            <constraint firstItem="SYe-Gl-Z46" firstAttribute="bottom" secondItem="6aU-jn-HvH" secondAttribute="bottom" constant="50" id="sdj-E3-3M8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="AJT-o2-KDz"/>

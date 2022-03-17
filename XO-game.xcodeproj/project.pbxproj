@@ -142,6 +142,16 @@
 			path = Log;
 			sourceTree = "<group>";
 		};
+		7724D59927E3940C00BA0270 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F874E4742224621100364CAE /* Main.storyboard */,
+				F874E4722224621100364CAE /* GameViewController.swift */,
+				4DECD248262AFEC700F093E1 /* MenuViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		DBF461B72624A22B00C162B2 /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,19 +181,17 @@
 		F874E46F2224621100364CAE /* XO-game */ = {
 			isa = PBXGroup;
 			children = (
+				7724D59927E3940C00BA0270 /* UI */,
 				7724D59227E3903800BA0270 /* Log */,
 				7724D58F27E3880B00BA0270 /* Extensions */,
 				4D445660262BFDF9009EE837 /* Command */,
 				4D445650262B2F70009EE837 /* Strategy */,
 				DBF461B72624A22B00C162B2 /* State */,
 				F874E4702224621100364CAE /* AppDelegate.swift */,
-				F874E4722224621100364CAE /* GameViewController.swift */,
-				4DECD248262AFEC700F093E1 /* MenuViewController.swift */,
 				F874E4F02225DFF700364CAE /* Referee.swift */,
 				F874E4E62225CB3F00364CAE /* Models */,
 				F874E4E52225CB3100364CAE /* Views */,
 				F874E4772224621300364CAE /* Assets.xcassets */,
-				F874E4742224621100364CAE /* Main.storyboard */,
 				F874E4792224621300364CAE /* LaunchScreen.storyboard */,
 				F874E47C2224621300364CAE /* Info.plist */,
 			);

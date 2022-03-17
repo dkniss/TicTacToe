@@ -15,27 +15,9 @@ enum GameMode {
 class MenuViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var logoImageView: UIImageView!
-    
-    @IBOutlet weak var playerVsPlayerButton: UIButton! {
-        didSet {
-            self.playerVsPlayerButton.layer.cornerRadius = 15
-            self.playerVsPlayerButton.clipsToBounds = true
-        }
-    }
-    
-    @IBOutlet weak var playerVsAIButton: UIButton! {
-        didSet {
-            self.playerVsAIButton.layer.cornerRadius = 15
-            self.playerVsAIButton.clipsToBounds = true
-        }
-    }
-    
-    @IBOutlet weak var blindPlayButton: UIButton! {
-        didSet {
-            self.blindPlayButton.layer.cornerRadius = 15
-            self.blindPlayButton.clipsToBounds = true
-        }
-    }
+    @IBOutlet weak var playerVsPlayerButton: UIButton!
+    @IBOutlet weak var playerVsAIButton: UIButton!
+    @IBOutlet weak var blindPlayButton: UIButton!
     
     // MARK: - Properties
     var gameMode: GameMode = .playerVsPlayer
@@ -59,7 +41,7 @@ class MenuViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = true
+        setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,5 +57,16 @@ class MenuViewController: UIViewController {
             segue.identifier == "StartGameSegue",
             let destinationVC = segue.destination as? GameViewController else { return }
         destinationVC.gameMode = gameMode
+    }
+    
+    // MARK: - Private methods
+    private func setupUI() {
+        self.navigationController?.navigationBar.isHidden = true
+        
+        let buttons = [self.playerVsPlayerButton, self.playerVsAIButton, self.blindPlayButton]
+        buttons.forEach({ button in
+            button?.layer.cornerRadius = 12
+            button?.clipsToBounds = true
+        })
     }
 }
