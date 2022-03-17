@@ -16,6 +16,7 @@ class PlayerInputState: GKState {
     unowned let referee: Referee
     
     let player: Player
+    let log = AnalyticsLogInvoker.shared
     var isWinner: Bool = false
     
     // MARK: - Init
@@ -34,8 +35,8 @@ class PlayerInputState: GKState {
     
     func addMark(at position: GameboardPosition) {
         guard self.view.canPlaceMarkView(at: position) else { return }
+        log.recordEvent(.addMark(self.player, position))
         
-        recordEvent(.addMark(self.player, position))
         recordTurn(player: self.player, position: position, gameboard: self.gameboard, view: self.view)
         
         placeMarkView(at: position)

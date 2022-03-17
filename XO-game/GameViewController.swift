@@ -19,6 +19,7 @@ class GameViewController: UIViewController {
     
     // MARK: - Properties
     let gameboard = Gameboard()
+    let log = AnalyticsLogInvoker.shared
     
     lazy var referee = Referee(gameboard: self.gameboard)
     
@@ -58,7 +59,7 @@ class GameViewController: UIViewController {
     
     // MARK: - Methods
     @IBAction func restartButtonTapped(_ sender: UIButton) {
-        recordEvent(.restartGame)
+        log.recordEvent(.restartGame)
         startNewGame()
     }
     

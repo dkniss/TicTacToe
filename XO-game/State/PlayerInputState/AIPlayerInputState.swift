@@ -30,7 +30,7 @@ class AIPlayerInputState: PlayerInputState {
             return position
         }()
         
-        recordEvent(.addMark(self.player, randomPosition))
+        log.recordEvent(.addMark(self.player, randomPosition))
         recordTurn(player: self.player, position: randomPosition, gameboard: self.gameboard, view: self.view)
         
         placeMarkView(at: randomPosition)

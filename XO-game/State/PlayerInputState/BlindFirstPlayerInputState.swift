@@ -16,7 +16,7 @@ class BlindFirstPlayerInputState: PlayerInputState {
     
     // MARK: - Methods
     override func addMark(at position: GameboardPosition) {
-        recordEvent(.addMark(self.player, position))
+        log.recordEvent(.addMark(self.player, position))
         recordTurn(player: self.player, position: position, gameboard: self.gameboard, view: self.view)
         
         placeMarkView(at: position)

@@ -10,10 +10,12 @@ import GameplayKit
 
 class GameEndedState: GKState {
     // MARK: - Properties
-    var winner: Player?
+    let log = AnalyticsLogInvoker.shared
     
     unowned let gameViewController: GameViewController
     
+    var winner: Player?
+
     // MARK: - Init
     init(gameViewController: GameViewController) {
         self.gameViewController = gameViewController
@@ -24,11 +26,11 @@ class GameEndedState: GKState {
         setupUI()
         
         if let playerInput = previousState as? PlayerInputState, playerInput.isWinner {
-            recordEvent(.endGame(winner: playerInput.player))
+            log.recordEvent(.endGame(winner: playerInput.player))
             showWinner(player: playerInput.player)
         } else if let playerInput = previousState as? AllTurnsDoneState {
             guard let player = playerInput.player else { return }
-            recordEvent(.endGame(winner: player))
+            log.recordEvent(.endGame(winner: player))
             showWinner(player: player)
         } else {
             self.gameViewController.winnerLabel.text = "Ничья"
